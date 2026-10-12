@@ -2,7 +2,7 @@
 
 import { CircleAlert, Info, TriangleAlert } from "lucide-react";
 
-import type { Severity } from "@/lib/demo-data";
+import type { Severity } from "@/lib/types";
 import { useApp } from "@/lib/providers";
 import { cn } from "@/lib/utils";
 
@@ -21,7 +21,7 @@ export function SeverityBadge({ severity }: { severity: Severity }) {
   return (
     <span className={cn("inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold", STYLE[severity])}>
       <Icon className="size-3.5" aria-hidden="true" />
-      {m.dash.severity[severity]}
+      {m.common.severity[severity]}
     </span>
   );
 }

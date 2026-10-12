@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { House, Languages, LayoutDashboard, Moon, ScanSearch, Sun } from "lucide-react";
+import { FileText, Globe, House, Languages, Moon, Sun } from "lucide-react";
 
 import { Logo } from "@/components/Logo";
 import { buttonClass } from "@/components/ui";
@@ -14,8 +14,8 @@ function useNavItems() {
   const pathname = usePathname();
   return [
     { href: "/", label: m.nav.home, icon: House },
-    { href: "/scan/new", label: m.nav.newScan, icon: ScanSearch },
-    { href: "/dashboard", label: m.nav.dashboard, icon: LayoutDashboard },
+    { href: "/website", label: m.nav.website, icon: Globe },
+    { href: "/cv", label: m.nav.cv, icon: FileText },
   ].map((item) => ({
     ...item,
     active: item.href === "/" ? pathname === "/" : pathname.startsWith(item.href),

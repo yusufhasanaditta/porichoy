@@ -14,7 +14,25 @@ Porichoy checks a person's **CV, LinkedIn profile and website in one scan**. A t
 
 It works in English and Bangla. The score comes from fixed rules in plain code, not from an LLM, so the same content always gets the same score.
 
-> Status: **Milestone 1 done, UI preview ready** (landing, scan form, dashboard with sample data). See [Roadmap](#roadmap).
+> Status: **Website check and CV check work end to end** (real crawling, rule checks, Gemini review, verified CV rewrite, Word export).
+
+## What works today
+
+**Website check** (`/website`): crawls up to 6 pages (SSRF-guarded, robots.txt respected), runs 21 rule checks (technical, on-page, structured data, performance via Google PageSpeed) and 4 Gemini content checks. Each section has its own page. Gemini also writes a new title, meta description and JSON-LD.
+
+**CV check** (`/cv`): reads the PDF line by line, runs 10 rule checks plus 4 Gemini checks and findings, each tied to the exact CV line. Gemini asks follow-up questions; your answers feed a writer model, and a second verifier model rejects any claim not in your CV or answers. Download the new CV as Word, save it as PDF, or copy it.
+
+| Endpoint | What it does |
+|---|---|
+| `POST /v1/website/analyze` | Start a website check `{url, lang}` |
+| `GET /v1/website/{id}` | Poll status and report |
+| `POST /v1/cv/analyze` | Upload a CV PDF (multipart: `file`, `lang`, `target_role`) |
+| `GET /v1/cv/{id}` | Poll status and report |
+| `POST /v1/cv/{id}/improve` | Write the improved CV from `{answers, targetRole}` |
+| `GET /v1/cv/{id}/improved.docx` | Download the new CV as Word |
+| `DELETE /v1/cv/{id}` | Delete the CV and report |
+
+Reports are kept in memory for 6 hours (Firestore comes with milestone 3).
 
 ## Architecture
 
@@ -40,8 +58,8 @@ Chrome Extension (WXT, MV3)            Web App (Next.js, Firebase App Hosting)
 Requirements: [uv](https://docs.astral.sh/uv/), Node 20+, pnpm.
 
 ```bash
-cp .env.example .env          # fill in your own keys; never commit .env
 cd services/api
+cp .env.example .env          # add GEMINI_API_KEY (and optional PSI_API_KEY); never commit .env
 uv sync                        # installs Python 3.12 + dependencies
 uv run pytest
 uv run uvicorn app.main:app --reload --port 8080

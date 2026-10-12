@@ -1,9 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
+  // Reports load in the browser from the API, so routes render on demand (no Cache Components).
   turbopack: {
     rules: {
       "*.css": {

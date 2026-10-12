@@ -28,11 +28,11 @@ export function FileDrop({ file, onChange, describedBy, label, dropText }: Props
   function accept(next: File | undefined) {
     if (!next) return;
     if (next.type !== "application/pdf" && !next.name.toLowerCase().endsWith(".pdf")) {
-      setError(m.scan.cvNotPdf);
+      setError(m.cv.notPdf);
       return;
     }
     if (next.size > MAX_BYTES) {
-      setError(m.scan.cvTooBig);
+      setError(m.cv.tooBig);
       return;
     }
     setError(null);
@@ -63,7 +63,7 @@ export function FileDrop({ file, onChange, describedBy, label, dropText }: Props
             onChange(null);
             if (inputRef.current) inputRef.current.value = "";
           }}
-          aria-label={`${m.scan.remove}: ${file.name}`}
+          aria-label={`${m.cv.remove}: ${file.name}`}
           className="grid size-11 cursor-pointer place-items-center rounded-lg text-muted transition-colors duration-200 hover:bg-surface hover:text-fg"
         >
           <X className="size-4" aria-hidden="true" />
@@ -90,7 +90,7 @@ export function FileDrop({ file, onChange, describedBy, label, dropText }: Props
       >
         <Upload className="size-6 text-muted" aria-hidden="true" />
         <span className="text-sm text-muted">
-          {dropText} <span className="font-semibold text-primary underline underline-offset-2">{m.scan.cvBrowse}</span>
+          {dropText} <span className="font-semibold text-primary underline underline-offset-2">{m.cv.browse}</span>
         </span>
       </label>
       <input

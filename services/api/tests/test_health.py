@@ -8,7 +8,7 @@ client = TestClient(app)
 def test_healthz() -> None:
     res = client.get("/healthz")
     assert res.status_code == 200
-    assert res.json() == {"ok": True, "version": VERSION}
+    assert res.json()["ok"] is True and res.json()["version"] == VERSION
 
 
 def test_unknown_route_uses_error_shape() -> None:

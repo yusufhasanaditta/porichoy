@@ -4,17 +4,17 @@ import Link from "next/link";
 import {
   ArrowRight,
   BadgeCheck,
-  BriefcaseBusiness,
+  Bot,
   FileSearch,
-  GitCompareArrows,
+  Globe,
+  Lock,
+  MessageCircleQuestion,
   Quote,
   Scale,
   ShieldCheck,
   Sparkles,
-  Target,
   TriangleAlert,
   Upload,
-  Bot,
 } from "lucide-react";
 
 import { ScoreRing } from "@/components/ScoreRing";
@@ -23,7 +23,7 @@ import { useApp } from "@/lib/providers";
 import { cn } from "@/lib/utils";
 
 const STEP_ICONS = [Upload, Bot, BadgeCheck];
-const FEATURE_ICONS = [Quote, ShieldCheck, Scale, GitCompareArrows, Target, BriefcaseBusiness];
+const FEATURE_ICONS = [Quote, ShieldCheck, Scale, MessageCircleQuestion, Globe, Lock];
 
 export default function LandingPage() {
   const { m, num } = useApp();
@@ -48,12 +48,12 @@ export default function LandingPage() {
             </h1>
             <p className="mt-5 max-w-xl text-pretty text-lg text-muted">{t.subtitle}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href="/scan/new" className={buttonClass("primary", "h-12 px-6 text-base")}>
-                {t.ctaPrimary}
+              <Link href="/cv" className={buttonClass("primary", "h-12 px-6 text-base")}>
+                {t.ctaCv}
                 <ArrowRight className="size-4" aria-hidden="true" />
               </Link>
-              <Link href="/dashboard" className={buttonClass("secondary", "h-12 px-6 text-base")}>
-                {t.ctaSecondary}
+              <Link href="/website" className={buttonClass("secondary", "h-12 px-6 text-base")}>
+                {t.ctaWebsite}
               </Link>
             </div>
             <dl className="mt-10 grid max-w-lg grid-cols-3 gap-4">
@@ -87,9 +87,9 @@ export default function LandingPage() {
                   <TriangleAlert className="mt-0.5 size-4 shrink-0 text-danger" aria-hidden="true" />
                   <div className="min-w-0">
                     <p className="text-sm font-semibold">{t.previewFinding}</p>
-                    <p className="mt-1 break-words font-mono text-xs text-muted">linkedin:headline</p>
+                    <p className="mt-1 break-words font-mono text-xs text-muted">cv:line:14</p>
                     <p className="mt-2 rounded-md border-l-2 border-danger bg-danger-soft px-2 py-1 font-mono text-xs">
-                      “Web Designer at Freelance”
+                      “Responsible for making websites for clients.”
                     </p>
                   </div>
                 </div>
@@ -152,10 +152,10 @@ export default function LandingPage() {
             <p className="mt-2 opacity-90">{t.ctaBody}</p>
           </div>
           <Link
-            href="/scan/new"
+            href="/cv"
             className="inline-flex h-12 shrink-0 items-center gap-2 rounded-xl bg-primary-fg px-6 font-semibold text-primary transition-opacity duration-200 hover:opacity-90"
           >
-            {t.ctaPrimary}
+            {t.ctaCv}
             <ArrowRight className="size-4" aria-hidden="true" />
           </Link>
         </div>
