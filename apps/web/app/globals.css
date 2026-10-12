@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Light theme (default). Bangladesh green as primary, coral as a sparing accent. */
+:root {
+  --bg: #f6f8f7;
+  --surface: #ffffff;
+  --surface-2: #eef3f1;
+  --fg: #0f1a17;
+  --muted: #4b5b55;
+  --border: #dbe3df;
+  --primary: #006a4e;
+  --primary-hover: #00573f;
+  --primary-fg: #ffffff;
+  --primary-soft: #e1f1ea;
+  --accent: #e8505b;
+  --danger: #b42332;
+  --danger-soft: #fdecee;
+  --warn: #a35200;
+  --warn-soft: #fdf1e3;
+  --success: #15803d;
+  --success-soft: #e5f6eb;
+  --ring: #006a4e;
+  --shadow: 0 1px 2px rgb(15 26 23 / 0.04), 0 4px 16px rgb(15 26 23 / 0.06);
+}
+
+.dark {
+  --bg: #0a110f;
+  --surface: #111a17;
+  --surface-2: #17231f;
+  --fg: #e8efec;
+  --muted: #9db0a9;
+  --border: #253530;
+  --primary: #34c79a;
+  --primary-hover: #5dd6b0;
+  --primary-fg: #03241a;
+  --primary-soft: #0f2b23;
+  --accent: #ff7a83;
+  --danger: #f87171;
+  --danger-soft: #2a1416;
+  --warn: #fbbf24;
+  --warn-soft: #2a2010;
+  --success: #4ade80;
+  --success-soft: #10261a;
+  --ring: #34c79a;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 4px 16px rgb(0 0 0 / 0.25);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-fg: var(--primary-fg);
+  --color-primary-soft: var(--primary-soft);
+  --color-accent: var(--accent);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-ring: var(--ring);
+  --shadow-card: var(--shadow);
+  --font-sans: var(--font-inter), var(--font-bangla), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-face), ui-monospace, monospace;
+}
+
+html {
+  color-scheme: light;
+  -webkit-text-size-adjust: 100%;
+}
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+/* Bangla script needs a little more line height to stay readable. */
+html[lang="bn"] body {
+  line-height: 1.75;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+button,
+a,
+[role="tab"] {
+  touch-action: manipulation;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-up {
+  animation: fade-up 300ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
